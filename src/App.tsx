@@ -6,7 +6,7 @@ import styles from "./App.module.css"
 const App = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [posts, setPosts] = useState<IPost[]>([]);
-
+  const [currentUserName, setCurrentUserName] = useState<string>("");
   
   const getUsers = async () => {
     try {
@@ -25,6 +25,12 @@ const App = () => {
       if (!response.ok) throw new Error("oшибка загрузки постов")
       const data: IPost[] = await response.json()
       setPosts(data)
+
+      const selectedUser = users.find((u) => u.id === userId)
+      if (selectedUser) {
+        setCurrentUserName(selectedUser.name)
+      }
+
     } catch (error) {
       console.error(error)
     }
@@ -48,7 +54,7 @@ const App = () => {
       </div>
     );
   } else {
-    postsContent = <p className={styles.emptyMsg}>нажмите на пользователя, чтобы увидеть посты</p>
+    postsContent = <p>нажмите на пользователя, чтобы увидеть посты</p>
   }
 
   return (
@@ -61,7 +67,7 @@ const App = () => {
             <UserCard 
               key={user.id} 
               user={user} 
-              onUserClick={fetchUserPosts} 
+              onSelect={getUserPosts} 
             />
           ))}
         </div>
