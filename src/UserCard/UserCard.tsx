@@ -1,4 +1,5 @@
 import { IUser } from "../types";
+import styles from "./styles.module.css"
 
 interface IUserCardProps {
   user: IUser;
@@ -7,7 +8,7 @@ interface IUserCardProps {
 
 const UserCard = ({ user, onSelect }: IUserCardProps) => {
   return (
-    <div onClick={() => onSelect(user.id)}>
+    <div className={styles.card} onClick={() => onSelect(user.id)}>
       <h3>{user.name}</h3>
       <p>{user.email}</p>
       <p>"компания" {user.company.name}</p>
