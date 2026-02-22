@@ -3,7 +3,7 @@ export interface IUser {
     name: string;
     email: string;
     company: {
-      name: string;
+    name: string;
     };
   }
   
