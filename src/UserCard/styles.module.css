@@ -5,4 +5,7 @@
     margin-bottom: 10px;
     cursor: pointer;
 }
-  
+.card:hover {
+    background-color: rgb(227, 242, 253); 
+    border-color: rgb(243, 33, 103);
+  } 
